@@ -1,0 +1,32 @@
+package kg.spring.ort.designpatterns.structural.adapter;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class CashPaymentAdapter implements PaymentProcessor {
+
+    private final CashPaymentSystem legacySystem;
+    private final int providedCents;
+
+    public CashPaymentAdapter(CashPaymentSystem legacySystem, int providedCents) {
+        this.legacySystem   = legacySystem;
+        this.providedCents  = providedCents;
+    }
+
+    @Override
+    public boolean pay(double amount) {
+        int priceCents = (int) (amount * 100);
+        legacySystem.insertCash(providedCents);
+        boolean success = legacySystem.validateCash(providedCents, priceCents);
+        if (success) {
+            int change = legacySystem.giveChange(providedCents, priceCents);
+            log.info("[Adapter] Cash accepted. Change: {} cents", change);
+        }
+        return success;
+    }
+
+    @Override
+    public String getPaymentMethod() {
+        return "CASH (legacy system via Adapter)";
+    }
+}

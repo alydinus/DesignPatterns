@@ -1,16 +1,13 @@
 package kg.spring.ort.designpatterns.structural.facade;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class InventoryService {
 
     public boolean checkAvailability(String item) {
-        log.info("[Inventory] Checking stock for: {}", item);
+        System.out.printf("[Inventory] Checking stock for: %s%n", item);
         return true;
     }
 
     public void deductItem(String item) {
-        log.info("[Inventory] Deducted item: {}", item);
+        System.out.printf("[Inventory] Deducted item: %s%n", item);
     }
 }

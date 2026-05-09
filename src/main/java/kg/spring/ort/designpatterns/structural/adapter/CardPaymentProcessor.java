@@ -1,8 +1,5 @@
 package kg.spring.ort.designpatterns.structural.adapter;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class CardPaymentProcessor implements PaymentProcessor {
 
     private final String cardNumber;
@@ -14,7 +11,7 @@ public class CardPaymentProcessor implements PaymentProcessor {
     @Override
     public boolean pay(double amount) {
         String masked = "**** **** **** " + cardNumber.substring(cardNumber.length() - 4);
-        log.info("[Card] Charging ${} to {}", String.format("%.2f", amount), masked);
+        System.out.printf("[Card] Charging $%.2f to %s%n", amount, masked);
         return true;
     }
 

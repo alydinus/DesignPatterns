@@ -1,8 +1,5 @@
 package kg.spring.ort.designpatterns.structural.facade;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class OrderFacade {
 
     private final InventoryService inventoryService = new InventoryService();
@@ -10,7 +7,7 @@ public class OrderFacade {
     private final ReceiptService   receiptService   = new ReceiptService();
 
     public String placeOrder(String customerId, String itemName, double price) {
-        log.info("[Facade] === Starting order for customer: {} ===", customerId);
+        System.out.printf("[Facade] === Starting order for customer: %s ===%n", customerId);
 
         if (!inventoryService.checkAvailability(itemName)) {
             return "FAILED: Item not available — " + itemName;

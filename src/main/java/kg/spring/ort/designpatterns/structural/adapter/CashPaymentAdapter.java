@@ -1,16 +1,13 @@
 package kg.spring.ort.designpatterns.structural.adapter;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class CashPaymentAdapter implements PaymentProcessor {
 
     private final CashPaymentSystem legacySystem;
     private final int providedCents;
 
     public CashPaymentAdapter(CashPaymentSystem legacySystem, int providedCents) {
-        this.legacySystem   = legacySystem;
-        this.providedCents  = providedCents;
+        this.legacySystem  = legacySystem;
+        this.providedCents = providedCents;
     }
 
     @Override
@@ -20,7 +17,7 @@ public class CashPaymentAdapter implements PaymentProcessor {
         boolean success = legacySystem.validateCash(providedCents, priceCents);
         if (success) {
             int change = legacySystem.giveChange(providedCents, priceCents);
-            log.info("[Adapter] Cash accepted. Change: {} cents", change);
+            System.out.printf("[Adapter] Cash accepted. Change: %d cents%n", change);
         }
         return success;
     }

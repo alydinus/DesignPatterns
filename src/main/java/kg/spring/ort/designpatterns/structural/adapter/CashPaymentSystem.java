@@ -1,20 +1,17 @@
 package kg.spring.ort.designpatterns.structural.adapter;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * Legacy cash-payment system that works in cents — incompatible with the modern PaymentProcessor interface.
  */
-@Slf4j
 public class CashPaymentSystem {
 
     public void insertCash(int cents) {
-        log.info("[Legacy Cash] Inserted {} cents", cents);
+        System.out.printf("[Legacy Cash] Inserted %d cents%n", cents);
     }
 
     public boolean validateCash(int insertedCents, int priceCents) {
         boolean ok = insertedCents >= priceCents;
-        log.info("[Legacy Cash] Validating: {} >= {} → {}", insertedCents, priceCents, ok);
+        System.out.printf("[Legacy Cash] Validating: %d >= %d → %s%n", insertedCents, priceCents, ok);
         return ok;
     }
 
